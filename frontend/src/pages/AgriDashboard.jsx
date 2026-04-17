@@ -18,53 +18,6 @@ import {
 
 import "./AgriDashboard.css";
 
-/* Dummy data used to test the frontend when first building and no data was available
-const seedData = (seed = 1) => {
-  const rand = (m = 1) => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return (seed / 233280) * m;
-  };
-  return {
-    rainfall: Array.from({ length: 12 }, (_, i) => ({
-      month: `M${i + 1}`,
-      mm: Math.round(40 + rand(1) * 180),
-      temp: Math.round(10 + rand(1) * 22),
-    })),
-    yieldPct: [
-      { name: "Healthy", value: Math.round(50 + rand(1) * 30) },
-      { name: "At Risk", value: Math.round(10 + rand(1) * 15) },
-      { name: "Poor", value: Math.round(5 + rand(1) * 15) },
-    ],
-    pestPct: [
-      { name: "Aphids", value: Math.round(30 + rand(1) * 20) },
-      { name: "Leaf Miner", value: Math.round(20 + rand(1) * 20) },
-      { name: "Other", value: Math.round(10 + rand(1) * 10) },
-    ],
-    tempVsMoisture: Array.from({ length: 20 }, () => ({
-      temp: Math.round(10 + rand(1) * 22),
-      moist: Math.round(20 + rand(1) * 70),
-    })),
-    health: Math.round(55 + rand(1) * 45),
-    alerts: [
-      { id: 1, level: "warning", title: "Fungal risk elevated", msg: "High humidity favors rust development." },
-      { id: 2, level: "info", title: "Mild drought watch", msg: "Rainfall below seasonal average." },
-    ],
-    aiTips: [
-      "Irrigate in early morning to reduce evaporation.",
-      "Rotate crops to reduce soil-borne pests.",
-      "Mulch to retain soil moisture and suppress weeds.",
-    ],
-    context: [
-      "Soil type: Loam (pH 6.2–6.7)",
-      "Prevailing wind: SW, avg 12 km/h",
-      "Dominant vegetation: ryegrass/clover",
-      "Common pests: leaf miner, aphids",
-    ],
-  };
-};
-*/
-
-
 export default function AgriDashboard() {
   const [selected, setSelected] = useState(null);
   const [data, setData] = useState({});
@@ -141,27 +94,6 @@ export default function AgriDashboard() {
       landcover: p.landcover
     }));
   }
-
-  /*
-  // Auto-fetch AI tips when context + grid data available
-  useEffect(() => {
-    async function getTips() {
-      if (context && data && Object.keys(data).length > 0 && dataset) {
-        setAiTips(["Loading..."]);
-        const areaData = getAreaDataForSuggestions(data.gridLat, data.gridLon, dataset);
-        console.log("In AgriDashboard:");
-        console.log(`Context: ${context}`);
-        console.log(`data: ${data}`);
-        console.log(`areaData: ${context}`);
-        const tips = await fetchChatGPTResponse(context, data, areaData);
-        setAiTips(tips);
-      } else {
-        setAiTips([]);
-      }
-    }
-    getTips();
-  }, [context, data, dataset]);
-  */
 
   // The tips generator
   const handleGenerate = async () => {

@@ -1,10 +1,8 @@
 from dotenv import load_dotenv
 
-# from geopy.adapters import AioHTTPAdapter
-# from geopy.geocoders import Nominatim
 
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, RunContext
+from pydantic_ai import Agent
 import json
 
 load_dotenv()
@@ -72,6 +70,5 @@ def create_agent(model: str = "openai:gpt-4o-mini", instructions: str = INSTRUCT
 
 
 async def get_recommendations(agent: Agent[GPTDependencies, GPTOutput], deps: GPTDependencies):
-    print("Calling get_recommendations() in chatgpt.py")
     prompt = build_prompt(deps)
     return (await agent.run(prompt, deps=deps)).output
